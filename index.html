@@ -1,46 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
+<!-- Example of linking an external CSS file -->
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+
 <head>
-  <meta charset="utf-8">
-  <title>HTML Example</title>
-  
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/about.css">
+    <meta charset="cp949">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정비실</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #shortcut-container {
+            text-align: center;
+            margin: 30px auto;
+        }
+
+        .shortcut-link {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        #stock-market {
+            text-align: center;
+            margin: 30px auto;
+        }
+    </style>
 </head>
+
+<!-- Example of a simple navigation menu -->
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+
 <body>
-  <section class="center">
-    <aside class="sidebar"></aside>
+
+    <header>
+        <h1>개인정비실</h1>
+    </header>
+
+    <body>
+        <p> 오늘의 할일: Microsoft Todo, 캘린더 체크하기</p>
+        <hr>
+        <p> 시간 비면 할일: 독서하기, 웹소설 쓰기, 요리하기, 웹개발하기</p>
+    </body>
+
+    <div id="login-container">
+        <!-- Your login form goes here -->
+        <form id ="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <hr>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="button" onclick="validateLogin()">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var usernameInput = document.getElementById('username');
+            var passwordInput = document.getElementById('password');
     
-    <section class="contents">
-      <!-- page will be include here -->
-      <section id="page" class="page">
-        <section id="about">
-          <section class="frame">
-            <h2><b>HELLO</b>WORLD</h2>
-            
-            <div class="cat">
-              <div class="picture">
-                <img src="images/mew.png" alt="Mew">
-              </div>
-              <small>Mew</small>
-            </div>
-            <div class="cat">
-              <div class="picture">
-                <img src="images/siesta.png" alt="Siesta">
-              </div>
-              <small>Siesta</small>
-            </div>
-            <div class="cat">
-              <div class="picture">
-                <img src="images/tiger.png" alt="Tiger">
-              </div>
-              <small>Tiger</small>
-            </div>
-          </section>
-        </section>
-      </section>
-    </section>
-  </section>
+            var username = usernameInput.value;
+            var password = passwordInput.value;
+    
+            if (username.trim() === '' || password.trim() === '') {
+                alert('Please enter both username and password.');
+            } else {
+                // Call the actual login logic
+                handleLogin(username, password);
+            }
+        }
+    
+        function handleLogin(username, password) {
+            // Simulate a server-side authentication using fetch
+            fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Login failed');
+                }
+                // Simulate a successful login
+                alert('Login successful! Redirecting to the dashboard.');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Login failed. Please try again.');
+            });
+        }
+    </script>
+
+    <div id="shortcut-container">
+        <a href="https://chat.openai.com/" class="shortcut-link" target="_blank">ChatGPT</a>
+        <a href="https://drive.google.com/drive/u/0/my-drive" class="shortcut-link" target="_blank">Google Drive</a>
+        <a href="https://docs.google.com/spreadsheets/d/1WVa14q0jQzaY0i3y2RWPGZoCKtte5XjR/edit#gid=1573009534" class="shortcut-link" target="_blank">체중관리시트</a>
+        <a href="https://medicine.catholic.ac.kr/" class="shortcut-link" target="_blank">가톨릭의대</a>
+        <a href="https://www.libgen.is/" class="shortcut-link" target="_blank">LibGen</a>
+        <a href="https://novel.naver.com/my/myNovelList" class="shortcut-link" target="_blank">내가 쓰는 웹소설</a>
+        <a href="https://songeui.catholic.ac.kr/m/foodMenu/foods1_01.jsp?years=2024&months=2&days=1" class="shortcut-link" target="_blank">성의교정 학식</a>
+        <!-- Add more shortcut links as needed -->
+    </div>
+
+    <div id="stock-market">
+        <!-- Add stock market overview here -->
+        <p>Stock Market Overview:</p>
+        <!-- You can display stock market information using JavaScript or embed widgets from financial APIs -->
+    </div>
+
+    <script>
+        // Use the Fetch API to get data from another site
+        fetch('https://www.investing.com/indices/major-indices')
+            .then(response => response.text())
+            .then(data => {
+                // Process and display data on your page
+                console.log(data);
+
+                // Example: Populate shortcut-container with links
+                const shortcutContainer = document.getElementById('shortcut-container');
+                data.shortcuts.forEach(shortcut => {
+                    const link = document.createElement('a');
+                    link.href = shortcut.url;
+                    link.className = 'shortcut-link';
+                    link.textContent = shortcut.label;
+                    shortcutContainer.appendChild(link);
+                });
+
+                // Example: Display stock market information
+                const stockMarketContainer = document.getElementById('stock-market');
+                stockMarketContainer.innerHTML = `<p>Stock Market Overview:</p><p>${data.stockMarket}</p>`;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+
 </body>
 </html>
